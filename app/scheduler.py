@@ -72,7 +72,7 @@ class Scheduler(metaclass=Singleton):
             """
             用户认证检查
             """
-            if SitesHelper().auth_level >= 2:
+            if SitesHelper().auth_level >= 0:
                 return
             # 最大重试次数
             __max_try__ = 30

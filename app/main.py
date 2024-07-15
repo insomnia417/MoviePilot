@@ -39,11 +39,6 @@ from app.scheduler import Scheduler
 from app.command import Command, CommandChian
 from app.schemas import Notification, NotificationType
 
-def hook_auth_level():
-    return 3
-
-SitesHelper.auth_level = hook_auth_level
-
 # App
 App = FastAPI(title=settings.PROJECT_NAME,
               openapi_url=f"{settings.API_V1_STR}/openapi.json")
@@ -162,7 +157,7 @@ def check_auth():
     """
     检查认证状态
     """
-    if SitesHelper().auth_level < 2:
+    if SitesHelper().auth_level < 0:
         err_msg = "用户认证失败，站点相关功能将无法使用！"
         MessageHelper().put(f"注意：{err_msg}", title="用户认证", role="system")
         CommandChian().post_message(

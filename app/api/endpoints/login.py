@@ -59,7 +59,7 @@ async def login_access_token(
     elif user and not user.is_active:
         raise HTTPException(status_code=403, detail="用户未启用")
     logger.info(f"用户 {user.name} 登录成功！")
-    level = SitesHelper().auth_level
+    level = 3
     return schemas.Token(
         access_token=security.create_access_token(
             userid=user.id,
