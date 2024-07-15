@@ -39,6 +39,11 @@ from app.scheduler import Scheduler
 from app.command import Command, CommandChian
 from app.schemas import Notification, NotificationType
 
+def hook_auth_level():
+    return 3
+
+SitesHelper.auth_level = hook_auth_level
+
 # App
 App = FastAPI(title=settings.PROJECT_NAME,
               openapi_url=f"{settings.API_V1_STR}/openapi.json")
